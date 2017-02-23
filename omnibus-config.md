@@ -12,19 +12,19 @@ Most are `task` directives, that run an asynchronous task for the lifetime of th
 
 Performs logging and log rotation.
 
-- logger_keyroot
+- **logger_keyroot**
 
 	The location of the logfile base. This will be the currently open log output, and earlier logs will have `.0`, etc. appended to them.
 
 		logger_logroot /var/log/pf9/omnibus.log
 
-- logger_size
+- **logger_size**
 
 	Size, in bytes, at which the logs will be rotated.
 
 		logger_size 1000000
 
-- logger_keep
+- **logger_keep**
 
 	Maximum number of rotated logs that will be saved at any one time.
 
@@ -38,9 +38,38 @@ Allows tasks to register themselves and accept messages by name.
 
 A task to manage receiving Rabbit messages. Used by other tasks.
 
+- **rabbit_host**
+
+	Host or IP number of the Rabbit server.
+
+		rabbit_host 127.0.0.1
+
+- **rabbit_port**
+
+	Port of the Rabbit server.
+
+		rabbit_port 5672
+
+- **rabbit_vhost**
+
+	Virtual host, if any, used by the OpenStack installation.
+
+		rabbit_vhost openstack1
+
+- **rabbit_user**
+
+	Username with which to connect to Rabbit. Must be able to create queues and exchanges.
+
+- **rabbit_password**
+
+	Password for the above username.
+
+		rabbit_password swordfish
+
+
 ### task rabbit-tx
 
-A task to manage transmitting Rabbit messages. Used by other tasks.
+A task to manage transmitting Rabbit messages. Used by other tasks. See parameters under *task rabbit-rx*.
 
 ### task upstream
 
@@ -62,35 +91,101 @@ Manages the collection of OpenStack inventory and status from the various OpenSt
 
 Manages the collection of some additional OpenStack inventory and status from the various OpenStack databases.
 
-task tail.nova
-task tail.cinder
-task tail.neutron
-task tail.secure
-task tail.keystone
-task tail.ksadm
-task loopback
-task support
-task sidekick
-task hostbus
-task communion
-task token
-task notifications
-task nova
-task cinder
-task ceilometer
-task heat
-task neutron
-task keyparty
-task expiry
-task qbert
-task convergence
-task jobs
+### task tail.nova
+
+Collect API data from the Nova API log.
+
+### task tail.cinder
+
+Collect API data from the Cinder API log.
+
+### task tail.neutron
+
+Collect API data from the Neutron API log.
+
+### task tail.secure
+
+Collect data from `/var/log/secure`
+
+## task tail.keystone
+
+Collect API data from the Keystone API log.
+
+### task tail.ksadm
+
+Collect API data from the Keystone Admin API log.
+
+### task loopback
+
+Probe to perform Rabbit data ingestion and extraction tests.
+
+### task support
+
+Platform9-specific Remote support task.
+
+### task sidekick
+
+Probe to monitor the Platform9-specific Sidekick role.
+
+### task hostbus
+
+Task to allow hosts using `muster` to communicate with Omnibus over Rabbit.
+
+### task communion
+
+Task to allow hosts using `muster` to send data to the a central server.
+
+### task token
+
+Manage Keystone tokens for use by Omnibus, as well as test that Keystone is responding to API queries. Required by many other tasks.
+
+### task notifications
+
+Probe to test the Platform9-specific Notifications service.
+
+### task nova
+
+Probe to test that Nova is responding to API queries.
+
+### task cinder
+
+Probe to test that Cinder is responding to API queries.
+
+### task ceilometer
+
+Probe to test that Ceilometer is responding to API queries.
+
+#### task heat
+
+Probe to test that Heat is responding to API queries.
+
+### task neutron
+
+Probe to test that Neutron is responding to API queries.
+
+### task keyparty
+
+Probe to collect Keystone inventory data.
+
+### task expiry
+
+Platform9-specific probe to warn if there are any pending certificate expirations.
+
+### task qbert
+
+Platform9-specific probe to report health of Platform9 Managed Kubernetes.
+
+### task convergence
+
+Platform9-specific probe to report problems with host convergences.
+
+### task jobs
+
+Task to manage Omnibus extensions through its jobs framework.
 
 # webserver API access
 port 4455
 
-rabbit_user {{ rabbit_userid }}
-rabbit_password {{ rabbit_password }}
 
 os.tenant.name admin
 os.username {{ admin_keystone_username }}
