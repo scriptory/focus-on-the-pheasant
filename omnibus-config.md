@@ -12,35 +12,56 @@ Most are `task` directives, that run an asynchronous task for the lifetime of th
 
 Performs logging and log rotation.
 
-### logger_keyroot
+#### logger_keyroot
 
 The location of the logfile base. This will be the currently open log output, and earlier logs will have `.0`, etc. appended to them.
 
 	logger_logroot /var/log/pf9/omnibus.log
 
-### logger_size
+#### logger_size
 
 Size, in bytes, at which the logs will be rotated.
 
 	logger_size 1000000
 
-### logger_keep
+#### logger_keep
 
 Maximum number of rotated logs that will be saved at any one time.
 
 	logger_keep 5
 
-task dispatcher
+### task dispatcher
 
-task rabbit-rx
-task rabbit-tx
+Allows tasks to register themselves and accept messages by name.
 
-task upstream
+### task rabbit-rx
 
-task collector
-task livestock
-task hostmaster
-task zebra
+A task to manage receiving Rabbit messages. Used by other tasks.
+
+### task rabbit-tx
+
+A task to manage transmitting Rabbit messages. Used by other tasks.
+
+### task upstream
+
+A task to send messages upstream to a central server.
+
+### task collector
+
+Collects various information from the Linux system (example: load average).
+
+### task hostmaster
+
+Collects information regarding Platform 9 hosts and their status.
+
+### task livestock
+
+Manages the collection of OpenStack inventory and status from the various OpenStack databases.
+
+### task zebra
+
+Manages the collection of some additional OpenStack inventory and status from the various OpenStack databases.
+
 task tail.nova
 task tail.cinder
 task tail.neutron
