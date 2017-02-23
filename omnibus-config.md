@@ -18,7 +18,7 @@ The location of the logfile base. This will be the currently open log output, an
 
 	logger_logroot /var/log/pf9/omnibus.log
 
-#### logger_size
+*logger_size
 
 Size, in bytes, at which the logs will be rotated.
 
