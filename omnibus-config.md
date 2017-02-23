@@ -20,9 +20,9 @@ The location of the logfile base. This will be the currently open log output, an
 
 - logger_size
 
-Size, in bytes, at which the logs will be rotated.
+	Size, in bytes, at which the logs will be rotated.
 
-	logger_size 1000000
+		logger_size 1000000
 
 #### logger_keep
 
