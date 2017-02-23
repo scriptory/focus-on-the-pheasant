@@ -12,11 +12,11 @@ Most are `task` directives, that run an asynchronous task for the lifetime of th
 
 Performs logging and log rotation.
 
-#### logger_keyroot
+- logger_keyroot
 
-The location of the logfile base. This will be the currently open log output, and earlier logs will have `.0`, etc. appended to them.
+	The location of the logfile base. This will be the currently open log output, and earlier logs will have `.0`, etc. appended to them.
 
-	logger_logroot /var/log/pf9/omnibus.log
+		logger_logroot /var/log/pf9/omnibus.log
 
 - logger_size
 
@@ -24,11 +24,11 @@ The location of the logfile base. This will be the currently open log output, an
 
 		logger_size 1000000
 
-#### logger_keep
+- logger_keep
 
-Maximum number of rotated logs that will be saved at any one time.
+	Maximum number of rotated logs that will be saved at any one time.
 
-	logger_keep 5
+		logger_keep 5
 
 ### task dispatcher
 
