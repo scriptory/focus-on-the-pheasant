@@ -14,6 +14,12 @@ The port number which Omnibus will offer for local API requests.
 
 	port 4455
 
+### is_master_du
+
+Whether or not this controller is a master (1), or a slave (0).
+
+	is_master_du 1
+
 ## OpenStack Configuration
 
 ### os.tenant.name
@@ -22,11 +28,15 @@ OpenStack tenant name, for use by probes.
 
 	os.tenant.name admin
 
+Use only one of *os.tenant.name* or *os.tenant.id*.
+
 ### os.tenant.id
 
 OpenStack tenant id, for use by probes.
 
 	os.tenant.id bef02e62-1f4f-4ecf-9e91-8fedffac44ed
+
+Use only one of *os.tenant.name* or *os.tenant.id*.
 
 ### os.username
 
@@ -40,11 +50,27 @@ OpenStack password, for use by probes.
 
 	os.password swordfish
 
-## os.region.name
+### os.region.name
 
 OpenStack Region Name, for use by probes.
 
 	os.region.name primary
+
+### os.domain.name
+
+OpenStack Domain Name, for use by probes.
+
+	os.domain.name default
+
+Use only one of *os.domain.name* or *os.domain.id*.
+
+### os.domain.id
+
+Openstack Domain id, for use by probes.
+
+	os.domain.id 6b74966e-129c-4bf6-b603-cb44d4ba541d
+
+Use only one of *os.domain.name* or *os.domain.id*.
 
 ## Tasks
 
@@ -139,6 +165,12 @@ A task to send messages upstream to a central server.
 
 Collects various information from the Linux system (example: load average).
 
+- **collector_fd_skips**
+
+	Normally, a survey of file descriptor usage is taken every minute. This uses *lsof*. If this DU is constrained for resources, set this parameter to *n* to skip every *n* minutes.
+
+		collector_fd_skips 10
+
 ### task hostmaster
 
 Collects information regarding Platform 9 hosts and their status.
@@ -212,6 +244,12 @@ Task to allow hosts using `muster` to send data to the a central server.
 
 Manage Keystone tokens for use by Omnibus, as well as test that Keystone is responding to API queries. Required by many other tasks.
 
+- **keystone_base_url**
+
+	Endpoint of the Keystone service.
+
+		keystone_base_url https://du.example.com/keystone
+
 - **token_interval**
 
 	Interval, in seconds, at which to request a fresh token and verify Keystone functionality.
@@ -238,6 +276,12 @@ Probe to test the Platform9-specific Notifications service.
 
 Probe to test that Nova is responding to API queries.
 
+- **nova_base_url**
+
+	Endpoint of the Nova service.
+
+		nova_base_url https://du.example.com/nova
+
 - **nova_interval**
 
 	Interval, in seconds, at which to execute the probe.
@@ -247,6 +291,12 @@ Probe to test that Nova is responding to API queries.
 ### task cinder
 
 Probe to test that Cinder is responding to API queries.
+
+- **cinder_base_url**
+
+	Endpoint of the Cinder service.
+
+		cinder_base_url https://du.example.com/cinder
 
 - **cinder_interval**
 
@@ -258,6 +308,12 @@ Probe to test that Cinder is responding to API queries.
 
 Probe to test that Ceilometer is responding to API queries.
 
+- **ceilometer_base_url**
+
+	Endpoint of the Ceilometer service.
+
+		ceilometer_base_url https://du.example.com/ceilometer
+
 - **ceilometer_interval**
 
 	Interval, in seconds, at which to execute the probe.
@@ -268,11 +324,27 @@ Probe to test that Ceilometer is responding to API queries.
 
 Probe to test that Heat is responding to API queries.
 
+- **heat_base_url**
+
+	Endpoint of the Heat service.
+
+		heat_base_url https://du.example.com/heat
+
 - **heat_interval**
 
 	Interval, in seconds, at which to execute the probe.
 
 		heat_interval 180
+
+### task murano
+
+Probe to test that Murano is responding to API queries.
+
+- **murano_interval**
+
+	Interval, in seconds, at which to execute the probe.
+
+		murano_interval 300
 
 ### task neutron
 
