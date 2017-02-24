@@ -366,13 +366,13 @@ Probe to test that Murano is responding to API queries.
 
 ### task neutron
 
+Probe to test that Neutron is responding to API queries.
+
 - **neutron_base_url**
 
 	Endpoint of the Neutron service.
 
 		neutron_base_url https://du.example.com/neutron
-
-Probe to test that Neutron is responding to API queries.
 
 - **neutron_interval**
 
