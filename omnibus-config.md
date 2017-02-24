@@ -356,7 +356,7 @@ Probe to test that Murano is responding to API queries.
 
 	Endpoint of the Murano service.
 
-		heat_base_url https://du.example.com/murano
+		murano_base_url https://du.example.com/murano
 
 - **murano_interval**
 
@@ -365,6 +365,12 @@ Probe to test that Murano is responding to API queries.
 		murano_interval 300
 
 ### task neutron
+
+- **neutron_base_url**
+
+	Endpoint of the Neutron service.
+
+		neutron_base_url https://du.example.com/neutron
 
 Probe to test that Neutron is responding to API queries.
 
