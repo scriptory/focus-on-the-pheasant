@@ -16,7 +16,7 @@ The port number which Omnibus will offer for local API requests.
 
 ### is_master_du
 
-Whether or not this controller is a master (1), or a slave (0).
+Whether this controller is a master (1), or a slave (0).
 
 	is_master_du 1
 
@@ -155,11 +155,15 @@ A task to send messages upstream to a central server.
 
 		upstream_websocket https://whistle.example.com:4077/ws
 
+	Used if `websocket` is a configured *upstream_method*.
+
 - **upstream_rabbit**
 
 	A Rabbit exchange, to which data will be posted.
 
 		upstream_rabbit pf9-upstream
+
+	Used if `rabbit` is a configured *upstream_method*.
 
 ### task collector
 
@@ -195,9 +199,17 @@ Collect API data from the Cinder API log.
 
 Collect API data from the Neutron API log.
 
+### task tail.heat
+
+Collect API data from the Heat API log.
+
 ### task tail.secure
 
 Collect data from `/var/log/secure`
+
+### task tail.audit
+
+Collect data from `/var/log/audit/audit.log`
 
 ### task tail.keystone
 
@@ -339,6 +351,12 @@ Probe to test that Heat is responding to API queries.
 ### task murano
 
 Probe to test that Murano is responding to API queries.
+
+- **murano_base_url**
+
+	Endpoint of the Murano service.
+
+		heat_base_url https://du.example.com/murano
 
 - **murano_interval**
 
